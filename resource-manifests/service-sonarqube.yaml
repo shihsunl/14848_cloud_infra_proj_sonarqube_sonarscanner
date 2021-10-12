@@ -7,11 +7,14 @@ spec:
     - port: 80
       protocol: TCP
       targetPort: 9000
+      name: sonarservice
     - port: 9022
       protocol: TCP
       targetPort: 22
+      name: ssh
     - port: 8080
       protocol: TCP
       targetPort: 8080
+      name: tcp8080
   selector:
     app: sonarqube-app
