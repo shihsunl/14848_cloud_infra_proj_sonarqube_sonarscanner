@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sonarqube-app
+  labels:
+    app: sonarqube-app
+spec:
+  selector:
+     matchLabels:
+       app: sonarqube-app
+  replicas: 2
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: 
+      maxUnavailable: 1
+      maxSurge: 1 
+  template:
+    metadata:
+      labels:
+        app: sonarqube-app
+    spec:
+      containers:
+        - image: shihsunl/14848_proj_sonar:ubuntu
+          imagePullPolicy: Always
+          name: sonarqube-app
+          ports:
+            - containerPort: 9000
+            - containerPort: 22
+            - containerPort: 8080
