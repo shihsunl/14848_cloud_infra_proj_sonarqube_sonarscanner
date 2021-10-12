@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 ENV DEBIAN_FRONTEND noninteractive
 MAINTAINER Shih-Sung-Lin
-EXPOSE 9000 80 22 8080 443
+EXPOSE 9000 80 22 8080 443 9022
 ENV PORT 8080
 RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d
 ENV JAVA_HOME=/usr/lib/jdk1.8.0_211
