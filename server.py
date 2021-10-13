@@ -43,10 +43,6 @@ def index():
         '<input type="submit" value="Ok">'
         '</form>'
     )
-    # 4622775b31dc637e130077883dc2979aa7c61d11
-    # 14848_Cloud_Infra_HW3
-    # test
-    # https://github.com/shihsunl/14848_Cloud_Infra_HW3.git
 
 @api.route(BASE_URL+'/success', methods=['GET'])
 def success():
@@ -59,7 +55,7 @@ def success():
 @api.route(BASE_URL+'/sonarscanner', methods=['POST'])
 def post_table_content():
     git_url    = request.form['git_url']
-    projectkey = request.form['pgit rojectkey']
+    projectkey = request.form['projectkey']
     sources    = request.form['sources']
     token      = request.form['token']
 
