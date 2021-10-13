@@ -11,7 +11,7 @@ git clone https://github.com/shihsunl/14848_cloud_infra_proj_sonarqube_sonarscan
 - Modify docker image in `resource-manifests/sonarqube_deployment.yaml`.
 - Execute 2 yaml file in resource-manifests folder.
 ```
-cd 14848_cloud_infra_proj_sonarqube_sonarscanner
+cd 14848_cloud_infra_proj_sonarqube_sonarscanner/resource-manifests/
 kubectl apply -f sonarqube_deployment.yaml 
 kubectl create -f service-sonarqube.yaml
 ```
