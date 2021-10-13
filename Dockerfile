@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 ENV DEBIAN_FRONTEND noninteractive
 MAINTAINER Shih-Sung-Lin
-EXPOSE 9000 80 22 8080 443 9022
+EXPOSE 9000 80 22 8080 443 9022 5000
 ENV PORT 8080
 RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d
 ENV JAVA_HOME=/usr/lib/jdk1.8.0_211
@@ -57,11 +57,14 @@ RUN chmod -R 777 /opt/sonar-scanner/bin/sonar-scanner &&\
 
 # get repo for launching hanging server
 WORKDIR /temp
-RUN git clone https://github.com/shihsunl/14848_cloud_infra_proj_driver.git
-RUN mv /temp/14848_cloud_infra_proj_driver/* /temp/ && rm -r /temp/14848_cloud_infra_proj_driver/
+RUN git clone https://github.com/shihsunl/14848_cloud_infra_proj_sonarqube_sonarscanner.git
+RUN mv /temp/14848_cloud_infra_proj_sonarqube_sonarscanner/* /temp/ && rm -r /temp/14848_cloud_infra_proj_sonarqube_sonarscanner/
 
 # Entrypoint
 CMD /etc/init.d/postgresql start &&\ 
     sudo -u test SONAR_WEB_CONTEXT=/sonarqube JAVA_HOME=/usr/lib/jdk1.8.0_211 SONAR_HOME=/opt/sonarqube PATH=$PATH:$JAVA_HOME/bin:$SONAR_HOME/bin /opt/sonarqube/bin/linux-x86-64/sonar.sh start &&\
     /etc/init.d/ssh restart &&\
-    exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 hello:app
+    cd /temp &&\
+    python3 server.py
+
+#exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 hello:app
