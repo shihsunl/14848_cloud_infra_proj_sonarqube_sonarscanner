@@ -14,6 +14,10 @@ def current_milli_time():
 api = Flask(__name__)
 api.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB
 BASE_URL = os.getenv('BASE_URL')
+if BASE_URL == None:
+    BASE_URL = ''
+
+print('BASE_URL:', BASE_URL)
 
 folder_list = ['project']
 for folder_name in folder_list:
@@ -55,7 +59,7 @@ def success():
 @api.route(BASE_URL+'/sonarscanner', methods=['POST'])
 def post_table_content():
     git_url    = request.form['git_url']
-    projectkey = request.form['projectkey']
+    projectkey = request.form['pgit rojectkey']
     sources    = request.form['sources']
     token      = request.form['token']
 
