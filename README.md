@@ -20,3 +20,13 @@ kubectl create -f service-sonarqube.yaml
 ![service](screenshot/service.png)
 
 - Next, you can access to the Service Website and select the sonarqube and sonarscanner service. Please check: `https://github.com/shihsunl/14848_cloud_infra_proj_driver`
+
+## RESTful API Server
+- Please check `server.py`
+- You can use API `http://{FrontEnd_Website_Public_IP}/{BASE_URL}/scanrun` to trigger SonarScanner.
+    - Example:
+    ```
+    curl -X POST -F 'git_url=https://github.com/xxx/xxxxx.git' -F 'projectkey=YOUR_PROJECT_KEY' -F 'sources=PROJECT_NAME' -F 'token=xxxxxxxxx'  'http://{FrontEnd_Website_Public_IP}/{BASE_URL}/scanrun'
+
+    curl -X POST -F 'git_url=https://github.com/shihsunl/14848_Cloud_Infra_HW3.git' -F 'projectkey=test76' -F 'token=3e7c17d0634217c9946d3cb994d299bd1a22fb59' -F 'sources=14848_Cloud_Infra_HW3' 'http://34.135.47.138/sonarscanner/scanrun'
+    ```
