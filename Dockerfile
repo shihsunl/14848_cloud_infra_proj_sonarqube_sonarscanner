@@ -10,6 +10,7 @@ ENV SONAR_ES_BOOTSTRAP_CHECKS_DISABLE true
 ENV SONAR_HOME=/opt/sonarqube
 ENV SONAR_SCANNER_HOME=/opt/sonar-scanner
 ENV PATH=$PATH:$JAVA_HOME/bin:$SONAR_HOME/bin:$SONAR_SCANNER_HOME/bin
+ENV BASE_URL /sonarscanner
 
 # setup
 RUN mkdir /temp

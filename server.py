@@ -27,21 +27,21 @@ for folder_name in folder_list:
 @api.route(BASE_URL+'/', methods=['GET'])
 def index():
     return (
-        '<!doctype html>'
-        '<title>Select Github Project</title>'
-        '<h1>Select Github Project</h1>'
-        '<form method="post" enctype="multipart/form-data" action="{}/sonarscanner">'.format(BASE_URL)
-        '<p>Git repo url</p>'
-        '<input type="text" name="git_url">'
-        '<p>Project Key</p>'
-        '<input type="text" name="projectkey">'
-        '<p>Repo project name</p>'
-        '<input type="text" name="sources">'
-        '<p>Login token</p>'
-        '<input type="text" name="token">'
-        '<p> </p>'
-        '<input type="submit" value="Ok">'
-        '</form>'
+        '''<!doctype html>
+        <title>Select Github Project</title>
+        <h1>Select Github Project</h1>
+        <form method="post" enctype="multipart/form-data" action="{}/scanrun">
+        <p>Git repo url</p>
+        <input type="text" name="git_url">
+        <p>Project Key</p>
+        <input type="text" name="projectkey">
+        <p>Repo project name</p>
+        <input type="text" name="sources">
+        <p>Login token</p>
+        <input type="text" name="token">
+        <p> </p>
+        <input type="submit" value="Ok">
+        </form>'''.format(BASE_URL)
     )
 
 @api.route(BASE_URL+'/success', methods=['GET'])
@@ -52,8 +52,8 @@ def success():
         '<h1>Success</h1>'
     )
 
-@api.route(BASE_URL+'/sonarscanner', methods=['POST'])
-def post_table_content():
+@api.route(BASE_URL+'/scanrun', methods=['POST'])
+def run_scanner():
     git_url    = request.form['git_url']
     projectkey = request.form['projectkey']
     sources    = request.form['sources']
