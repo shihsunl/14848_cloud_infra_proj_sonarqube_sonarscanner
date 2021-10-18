@@ -30,7 +30,7 @@ def index():
         '<!doctype html>'
         '<title>Select Github Project</title>'
         '<h1>Select Github Project</h1>'
-        '<form method="post" enctype="multipart/form-data" action="/sonarscanner">'
+        '<form method="post" enctype="multipart/form-data" action="{}/sonarscanner">'.format(BASE_URL)
         '<p>Git repo url</p>'
         '<input type="text" name="git_url">'
         '<p>Project Key</p>'

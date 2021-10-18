@@ -55,7 +55,7 @@ RUN chmod -R 777 /opt/sonar-scanner/bin/sonar-scanner &&\
     chown -R test:root /opt/sonar-scanner/ &&\
     ln -s /opt/sonar-scanner/bin/sonar-scanner /usr/local/bin/sonar-scanner
 
-# get repo for launching hanging server
+# get repo for launching sonar scanner server
 WORKDIR /temp
 RUN git clone https://github.com/shihsunl/14848_cloud_infra_proj_sonarqube_sonarscanner.git
 RUN mv /temp/14848_cloud_infra_proj_sonarqube_sonarscanner/* /temp/ && rm -r /temp/14848_cloud_infra_proj_sonarqube_sonarscanner/
