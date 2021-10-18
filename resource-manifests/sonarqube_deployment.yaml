@@ -28,3 +28,4 @@ spec:
             - containerPort: 9000
             - containerPort: 22
             - containerPort: 8080
+            - containerPort: 5000

@@ -67,5 +67,3 @@ CMD /etc/init.d/postgresql start &&\
     /etc/init.d/ssh restart &&\
     cd /temp &&\
     python3 server.py
-
-#exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 hello:app
