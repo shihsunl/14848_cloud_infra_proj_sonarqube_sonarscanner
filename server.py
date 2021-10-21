@@ -24,8 +24,24 @@ for folder_name in folder_list:
     if not os.path.exists(folder_name):
         os.makedirs(folder_name)
 
+@api.route(BASE_URL+'/css/style.css', methods=['GET'])
+def cssfile():
+    file = open("css/style.css", mode='r')
+    text = file.read()
+    file.close()
+    return (text)
+
 @api.route(BASE_URL+'/', methods=['GET'])
 def index():
+    file = open("index.html", mode='r')
+    text = file.read()
+    file.close()
+    text = text.format(proxy_base=BASE_URL)
+    print(text)
+
+    return (text)
+
+    """
     return (
         '''<!doctype html>
         <title>Select Github Project</title>
@@ -43,6 +59,7 @@ def index():
         <input type="submit" value="Ok">
         </form>'''.format(BASE_URL)
     )
+    """
 
 @api.route(BASE_URL+'/success', methods=['GET'])
 def success():
