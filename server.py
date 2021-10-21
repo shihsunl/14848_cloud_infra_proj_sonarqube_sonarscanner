@@ -37,8 +37,6 @@ def index():
     text = file.read()
     file.close()
     text = text.format(proxy_base=BASE_URL)
-    print(text)
-
     return (text)
 
     """
