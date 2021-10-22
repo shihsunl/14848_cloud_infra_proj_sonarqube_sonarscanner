@@ -61,8 +61,15 @@ WORKDIR /temp
 RUN git clone https://github.com/shihsunl/14848_cloud_infra_proj_sonarqube_sonarscanner.git
 RUN mv /temp/14848_cloud_infra_proj_sonarqube_sonarscanner/* /temp/ && rm -r /temp/14848_cloud_infra_proj_sonarqube_sonarscanner/
 
+# web terminal
+WORKDIR /temp
+RUN wget https://github.com/yudai/gotty/releases/download/v1.0.1/gotty_linux_amd64.tar.gz &&\
+    tar -zxvf gotty_linux_amd64.tar.gz &&\
+    echo "/temp/gotty -w bash > /temp/gotty.out >2&1 &" > gotty.sh && chmod 777 /temp/*
+
 # Entrypoint
 CMD /etc/init.d/postgresql start &&\ 
+    nohup /temp/gotty.sh &&\
     sudo -u test SONAR_WEB_CONTEXT=/sonarqube JAVA_HOME=/usr/lib/jdk1.8.0_211 SONAR_HOME=/opt/sonarqube PATH=$PATH:$JAVA_HOME/bin:$SONAR_HOME/bin /opt/sonarqube/bin/linux-x86-64/sonar.sh start &&\
     /etc/init.d/ssh restart &&\
     cd /temp &&\
